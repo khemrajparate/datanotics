@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        /* Header styling */
+       
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+           
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 150px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #38B2AC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #319795;
+        }
+
+        /* Mobile Styles */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: white;
+               
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                flex-direction: row;
+            }
+        }
+
+        /* Heading styling */
+        .text {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        /* Container styling */
+        .container {
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 90%;
+        }
+
+        /* Table styling */
+       
+
+        /* Dropdown styling */
+        select.form-control {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #dadada;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            color: #2c5042;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        select.form-control:focus {
+            border-color: #3498db;
+        }
+
+        /* Image styling */
+        img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table data styling */
+        .table td {
+            font-size: 1rem;
+            color: #34495e;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .table th, .table td {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            select.form-control {
+                width: 100%;
+            }
+
+            img {
+                width: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .text {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .table th, .table td {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+
+            img {
+                width: 70px;
+            }
+
+            /* Make the table scrollable horizontally */
+            .table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            /* Adjust dropdowns for smaller screens */
+            select.form-control {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+
+        .blue {
+            background-color: #ccf2eb;
+        }
+
+        .notes {
+            text-align: left;
+        }
+
+        .data {
+            background: rgb(0,131,129);
+            background: linear-gradient(90deg, rgba(0,131,129,1) 12%, rgb(0, 21, 53) 12%);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            padding-left: 35px;
+            padding-right: 15px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 15px;
+        }
+
+        .cnt1 {
+            text-align: left;
+            background-color: rgb(238, 238, 238);
+        }
+
+        .cnt p {
+            margin-left: 40px;
+            font-size: 14px;
+            padding: 12px;
+        }
+
+        .cnt h4 {
+            font-size: 25px;
+            margin-left: 40px;
+            font-weight: 700;
+            padding-top: 55px;
+        }
+
+        .btn1 {
+            color: rgb(0, 89, 85);
+            border: #eaf2f8;
+            font-size: 16px;
+            margin-left: 40px;
+            font-weight: 600;
+            margin-top: -55px;
+            padding-bottom: 25px;
+            margin-top: -25px;
+           
+        }
+
+        .data1 h2 {
+            text-align: left;
+            font-size: 20px;
+            margin-left: 125px;
+        }
+
+        .data1 p {
+            text-align: left;
+            margin-left: 125px;
+        }
+       /* Style for table header */
+th {
+    width: 300px;
+   
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Dropdown Styling */
+th select {
+    width: 90%;
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+   
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    appearance: none;
+    font-weight: 500;
+    
+    /* Custom dropdown arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+/* Hover effect */
+th select:hover {
+    background-color: #f9f9f9;
+}
+
+/* Focus (when clicked) */  
+th select:focus {
+   
+    background-color: #e0f7fa;
+    transform: scale(1.02);
+    box-shadow: 0px 4px 8px rgba(0, 121, 107, 0.2);
+}
+
+/* Animation for the dropdown options */
+th select option {
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+        
+        
+    </style>
+    <title>Compare</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    select {
+        width: 80%;
+        padding: 5px;
+    }
+    
+</style>
+
+<body>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://herculesadvisors.in/wp-content/uploads/2024/11/Untitled-design-2-e1731668329705.png" alt="Hercules Insurance Logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="menu">
+            <a href="#" class="active">Home</a>
+            <a href="#">Insurance</a>
+            <a href="#">Blog</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <button>Claim</button>
+    </nav>
+    <button class="data" style="margin-top: 35px;">COMPARE & CHOOSE</button>
+
+    <h1 style="margin-top: 65px; color: #04374e;">SBI Arogya Supreme Pro vs Royal Sundaram Next Gen vs NIA -<br>
+        Yuva Bharat Health - Base Plan</h1>
+
+        <div class="container">
+       
+
+            <table>
+                    <tr>
+                <th style="background-color: #acedeb;">Select Insurance Company</th>
+                <th width="300px" style="background-color: #ccf2eb;">
+                    <select id="insuranceCompany1" onchange="updateProducts(1)">
+                        <option value="">-- Select Anyone --</option>
+                    </select>
+                </th>
+                <th width="300px" style="background-color: #ccf2eb;">
+                    <select id="insuranceCompany2" onchange="updateProducts(2)">
+                        <option value="">-- Select Anyone --</option>
+                    </select>
+                </th>
+                <th width="300px" style="background-color: #ccf2eb;">
+                    <select id="insuranceCompany3" onchange="updateProducts(3)">
+                        <option value="">-- Select Anyone --</option>
+                    </select>
+                </th>
+                
+            </tr>
+            
+                <tr>
+                    <th style="background-color: #acedeb;">Select Product</th>
+                    <th width="300px" style="background-color: #ccf2eb;">
+                        <select id="product1" onchange="updateTable(1)">
+                            <option value="">-- Select Anyone --</option>
+                        </select>
+                    </td>
+                    <th width="300px" style="background-color: #ccf2eb;">
+                        <select id="product2" onchange="updateTable(2)">
+                            <option value="">-- Select Anyone --</option>
+                        </select>
+                    </td>
+                    <th width="300px" style="background-color: #ccf2eb;">
+                        <select id="product3" onchange="updateTable(3)">
+                            <option value="">-- Select Anyone --</option>
+                        </select>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <th>Room Rent Limit</th>
+                    <td id="roomRent1">N/A</td>
+                    <td id="roomRent2">N/A</td>
+                    <td id="roomRent3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Co-pay</th>
+                    <td id="copay1">N/A</td>
+                    <td id="copay2">N/A</td>
+                    <td id="copay3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Pre/Post Hospitalisation</th>
+                    <td id="prePost1">N/A</td>
+                    <td id="prePost2">N/A</td>
+                    <td id="prePost3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Restoration Benefit</th>
+                    <td id="restoration1">N/A</td>
+                    <td id="restoration2">N/A</td>
+                    <td id="restoration3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Power Booster/No claim Bonus</th>
+                    <td id="power1">N/A</td>
+                    <td id="power2">N/A</td>
+                    <td id="power3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Consumables Cover</th>
+                    <td id="Consumables1">N/A</td>
+                    <td id="Consumables2">N/A</td>
+                    <td id="Consumables3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Day Care Procedure</th>
+                    <td id="Day1">N/A</td>
+                    <td id="Day2">N/A</td>
+                    <td id="Day3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Sublimits on Treatment of Diseases</th>
+                    <td id="Sublimits1">N/A</td>
+                    <td id="Sublimits2">N/A</td>
+                    <td id="Sublimits3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Life Long Renewability</th>
+                    <td id="Life1">N/A</td>
+                    <td id="Life2">N/A</td>
+                    <td id="Life3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Hospital Network</th>
+                    <td id="Hospital1">N/A</td>
+                    <td id="Hospital2">N/A</td>
+                    <td id="Hospital3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Extra Strandout features</th>
+                    <td id="Extra1">N/A</td>
+                    <td id="Extra2">N/A</td>
+                    <td id="Extra3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Pre existing diseases waiting period</th>
+                    <td id="diseases1">N/A</td>
+                    <td id="diseases2">N/A</td>
+                    <td id="diseases3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Deductible</th>
+                    <td id="Deductible1">N/A</td>
+                    <td id="Deductible2">N/A</td>
+                    <td id="Deductible3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Maternity</th>
+                    <td id="Maternity1">N/A</td>
+                    <td id="Maternity2">N/A</td>
+                    <td id="Maternity3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Road Ambulance</th>
+                    <td id="Road1">N/A</td>
+                    <td id="Road2">N/A</td>
+                    <td id="Road3">N/A</td>
+                </tr>
+                <tr>
+                    <th>OPD coverage</th>
+                    <td id="OPD1">N/A</td>
+                    <td id="OPD2">N/A</td>
+                    <td id="OPD3">N/A</td>
+                </tr>
+                <tr>
+                    <th>Preventive Health Check up</th>
+                    <td id="Preventive1">N/A</td>
+                    <td id="Preventive2">N/A</td>
+                    <td id="Preventive3">N/A</td>
+                </tr>
+            </table><br>
+            
+            <button onclick="window.print()"><i class="fa fa-download"></i> Download</button>
+        </div>
+           
+            
+        
+       
+
+
+
+       
+
+    
+    
+  
+    <div id="serviceInfo" class="service-info">
+        <h2 id="serviceTitle"></h2>
+        <p id="serviceDescription"></p>
+    </div>
+    
+   <div class="data1">
+        <h2>Product Benefits:</h2>
+        <h2>SBI Arogya Supreme Pro </h2>
+        <p>The SBI Arogya Supreme Pro Secure Plan offers comprehensive coverage that includes hospitalisation, pre-hospitalisation, and post-hospitalisation expenses. However, that the pre-hospitalisation expenses are covered for up to 60 days before hospital admission and post-hospitalisation expenses up to 180 days after discharge, all up to the sum insured. In addition, the policy pays up to the sum insured amount for all day care services, domiciliary treatments, expenses of donors for organ donation procedures, modern treatments, and non-medical expenses. Moreover, with no restrictions on room rent, the SBI Arogya Supreme Pro Plan gives you the freedom to select any room. There is no limit on ICU rent and no provision for copayments either. However, an optional deductible is applicable under the policy, and you have the flexibility to choose from the following options: 25K/50K/100K/200K/300K as an option. Common medical procedures and treatments, such as joint replacement surgery and cataract treatments, are not restricted under this plan and are therefore covered up to the sum insured. Notably, under this plan, specific treatments have a 24-month waiting time, whereas pre-existing conditions have a 36-month waiting period.</p>
+
+        <h2>Royal Sundaram Next Gen</h2>
+        <p>The Royal Sundaram Next Gen Plan provides comprehensive coverage that encompasses hospitalisation costs, as well as pre and post-hospitalization expenses. Pre-hosp expenses are covered for up to 90 days before admission, while post-hospitalization expenses are covered for up to 180 days after discharge, both within the sum insured. Additionally, the policy covers all daycare treatments, domiciliary treatments (except for 15 illnesses), expenses of donors for organ donation procedures, and modern treatments all up to the sum insured. Please note that non-medical expenses are covered up to the sum assured as an add-on. Moreover, the plan offers the flexibility to choose any room without imposing room rent limits, though it is available as an add-on. There are no limits on ICU rent or deductibles. Also, this plan offers an optional co-payment of 10% to 50%. The policy covers common medical treatments and surgeries, such as cataract and joint replacement surgeries, up to the sum insured. However, it's important to note that pre-existing conditions and specific conditions have a 12-month waiting period (as an add-on). As an add-on, this plan allows a 90-day waiting period for conditions like BP, Diabetes, and Heart Disease (unless these diseases are classified as pre-existing conditions).</p>
+
+        <h2>NIA - Yuva Bharat Health - Base Plan</h2>
+        <p>The NIA - Yuva Bharat Health - Base Plan Plan provides comprehensive coverage for hospitalisation, pre-hospitalisation, and post-hospitalisation expenses. It covers pre- costs for up to 60 days before you're admitted and post-hospitalisation expenses for up to 90 days after discharge, all within the sum insured. Plus, it includes everything from day care procedures and domiciliary treatments to expenses for organ donation, modern treatments, and non-medical expenses, all up to sum assured. The Tata AIG MediCare Premier Plan gives you the freedom to choose any hospital room without room rent limits. Furthermore, there is no ICU rent limit, copayments, or deductibles under the plan. The policy places no restrictions on common medical treatments or surgeries, like cataracts, joint replacement surgeries, etc. However, it's important to know that pre-existing conditions come with a 24-month waiting period, and certain specific diseases also carry a 24-month waiting period.</p>
+    </div>
+
+   
+         <script>
+
+            function downloadPageAsPDF() {
+            const { jsPDF } = window.jspdf;
+            let doc = new jsPDF();
+
+            html2canvas(document.getElementById("content")).then(canvas => {
+                let imgData = canvas.toDataURL("image/png");
+                let imgWidth = 190;  // A4 width in mm (210mm minus margins)
+                let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                doc.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
+                doc.save("webpage.pdf");
+            });
+        }
+            // Simulated database
+            const insuranceData = {
+                "State Bank of india": 
+                {
+                    "aaroyga Supreme pro": { roomRent: "$1000/day", copay: "10%", prePost: "30 days", restoration: "Yes", power: "123", Consumables: "45", Day: "67 days", Sublimits: "Yes",Life: "897", Hospital: "907", Extra: "433", diseases: "Yes",Deductible: "xyz", Maternity: "ybc", Road: "bandu", OPD: "nice", Preventive: "ohhh" },
+                    "aaroyga Supreme plus": { roomRent: "$2000/day", copay: "20%", prePost: "40 days", restoration: "NO", power: "13", Consumables: "347", Day: "567 days", Sublimits: "Yes",Life: "87", Hospital: "97", Extra: "4353", diseases: "Yes",Deductible: "xz", Maternity: "kbc", Road: "bandu", OPD: "nice", Preventive: "oh" },
+                    "Aaroyga supreme Premium": { roomRent: "$1000/day", copay: "10%", prePost: "30 days", restoration: "Yes", power: "123", Consumables: "45", Day: "67 days", Sublimits: "Yes",Life: "897", Hospital: "907", Extra: "433", diseases: "Yes",Deductible: "xyz", Maternity: "ybc", Road: "bandu", OPD: "nice", Preventive: "ohhh" },
+                    "Aaroyga PLus": { roomRent: "$2000/day", copay: "20%", prePost: "40 days", restoration: "NO", power: "13", Consumables: "347", Day: "567 days", Sublimits: "Yes",Life: "87", Hospital: "97", Extra: "4353", diseases: "Yes",Deductible: "xz", Maternity: "kbc", Road: "bandu", OPD: "nice", Preventive: "oh" },
+                    "Super Health Elite": { roomRent: "$1000/day", copay: "10%", prePost: "30 days", restoration: "Yes", power: "123", Consumables: "45", Day: "67 days", Sublimits: "Yes",Life: "897", Hospital: "907", Extra: "433", diseases: "Yes",Deductible: "xyz", Maternity: "ybc", Road: "bandu", OPD: "nice", Preventive: "ohhh" },
+                    "Super health platinum": { roomRent: "$2000/day", copay: "20%", prePost: "40 days", restoration: "NO", power: "13", Consumables: "347", Day: "567 days", Sublimits: "Yes",Life: "87", Hospital: "97", Extra: "4353", diseases: "Yes",Deductible: "xz", Maternity: "kbc", Road: "bandu", OPD: "nice", Preventive: "oh" },
+                    "Super health prime": { roomRent: "$1000/day", copay: "10%", prePost: "30 days", restoration: "Yes", power: "123", Consumables: "45", Day: "67 days", Sublimits: "Yes",Life: "897", Hospital: "907", Extra: "433", diseases: "Yes",Deductible: "xyz", Maternity: "ybc", Road: "bandu", OPD: "nice", Preventive: "ohhh" },
+                    "Super health platinum infinite ": { roomRent: "$2000/day", copay: "20%", prePost: "40 days", restoration: "NO", power: "13", Consumables: "347", Day: "567 days", Sublimits: "Yes",Life: "87", Hospital: "97", Extra: "4353", diseases: "Yes",Deductible: "xz", Maternity: "kbc", Road: "bandu", OPD: "nice", Preventive: "oh" }
+                   
+                },
+                "Manipal Cigna": {
+                    "Lifeline Health Insurance - Classic": { roomRent: "$3000/day", copay: "30%", prePost: "50 days", restoration: "NO", power: "12", Consumables: "345", Day: "57 days", Sublimits: "Yes",Life: "89", Hospital: "9337", Extra: "4653", diseases: "Yes",Deductible: "xy", Maternity: "ac", Road: "bandu", OPD: "nice", Preventive: "bye" },
+                    "Lifeline Health Insurance - Supreme": { roomRent: "$3000/day", copay: "40%", prePost: "60 days", restoration: "Yes", power: "23", Consumables: "385", Day: "56 days", Sublimits: "Yes",Life: "97", Hospital: "957", Extra: "4373", diseases: "Yes",Deductible: "rfz", Maternity: "ab", Road: "bandu", OPD: "nice", Preventive: "jfndvjn" },
+                    "Lifeline Health Insurance - Elite": { roomRent: "$3000/day", copay: "30%", prePost: "50 days", restoration: "NO", power: "12", Consumables: "345", Day: "57 days", Sublimits: "Yes",Life: "89", Hospital: "9337", Extra: "4653", diseases: "Yes",Deductible: "xy", Maternity: "ac", Road: "bandu", OPD: "nice", Preventive: "bye" },
+                    "Sarvah Uttam": { roomRent: "$3000/day", copay: "40%", prePost: "60 days", restoration: "Yes", power: "23", Consumables: "385", Day: "56 days", Sublimits: "Yes",Life: "97", Hospital: "957", Extra: "4373", diseases: "Yes",Deductible: "rfz", Maternity: "ab", Road: "bandu", OPD: "nice", Preventive: "jfndvjn" },
+                    "Sarvah Pratham": { roomRent: "$3000/day", copay: "30%", prePost: "50 days", restoration: "NO", power: "12", Consumables: "345", Day: "57 days", Sublimits: "Yes",Life: "89", Hospital: "9337", Extra: "4653", diseases: "Yes",Deductible: "xy", Maternity: "ac", Road: "bandu", OPD: "nice", Preventive: "bye" },
+                    "Sarvah Param": { roomRent: "$3000/day", copay: "40%", prePost: "60 days", restoration: "Yes", power: "23", Consumables: "385", Day: "56 days", Sublimits: "Yes",Life: "97", Hospital: "957", Extra: "4373", diseases: "Yes",Deductible: "rfz", Maternity: "ab", Road: "bandu", OPD: "nice", Preventive: "jfndvjn" },
+                    "Pro Health Select Plan A": { roomRent: "$3000/day", copay: "30%", prePost: "50 days", restoration: "NO", power: "12", Consumables: "345", Day: "57 days", Sublimits: "Yes",Life: "89", Hospital: "9337", Extra: "4653", diseases: "Yes",Deductible: "xy", Maternity: "ac", Road: "bandu", OPD: "nice", Preventive: "bye" },
+                    "Pro Health Select Plan B": { roomRent: "$3000/day", copay: "40%", prePost: "60 days", restoration: "Yes", power: "23", Consumables: "385", Day: "56 days", Sublimits: "Yes",Life: "97", Hospital: "957", Extra: "4373", diseases: "Yes",Deductible: "rfz", Maternity: "ab", Road: "bandu", OPD: "nice", Preventive: "jfndvjn" }
+
+                },
+                "Star Health": {
+                    "Star Comphrensive ": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
+                    "Family Health Optima ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
+                    "Super star ": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
+                    "Health Assure  ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
+                    "Smart Health Pro": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
+                    "YoungStar ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
+                    "Medi classic  ": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
+                    "Star Red Carpet ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
+                    "Diabeties Safe": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" }
+                },
+
+                "HDFC ERGO General Insurance ": {
+                    "Optima Secure ": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
+                    "Optima Lite": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
+                    "Energy": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
+                    "My Health Suraksha": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" }
+                }
+
+                
+            };
+    
+            // Populate insurance companies dropdowns
+            function populateCompanies() {
+                let companyDropdowns = ["insuranceCompany1", "insuranceCompany2", "insuranceCompany3" ];
+                let companies = Object.keys(insuranceData);
+                
+                companyDropdowns.forEach(dropdownId => {
+                    let dropdown = document.getElementById(dropdownId);
+                    companies.forEach(company => {
+                        let option = document.createElement("option");
+                        option.value = company;
+                        option.textContent = company;
+                        dropdown.appendChild(option);
+                    });
+                });
+            }
+    
+            // Update product dropdown based on selected company
+            function updateProducts(index) {
+                let companyDropdown = document.getElementById(`insuranceCompany${index}`);
+                let productDropdown = document.getElementById(`product${index}`);
+                let selectedCompany = companyDropdown.value;
+    
+                productDropdown.innerHTML = '<option value="">-- Select Anyone --</option>'; // Reset options
+    
+                if (selectedCompany && insuranceData[selectedCompany]) {
+                    Object.keys(insuranceData[selectedCompany]).forEach(product => {
+                        let option = document.createElement("option");
+                        option.value = product;
+                        option.textContent = product;
+                        productDropdown.appendChild(option);
+                    });
+                }
+                
+                updateTable(index); // Reset table values
+            }
+    
+            // Update table values based on selected product
+            function updateTable(index) {
+                let companyDropdown = document.getElementById(`insuranceCompany${index}`);
+                let productDropdown = document.getElementById(`product${index}`);
+                let selectedCompany = companyDropdown.value;
+                let selectedProduct = productDropdown.value;
+                
+                let roomRentCell = document.getElementById(`roomRent${index}`);
+                let copayCell = document.getElementById(`copay${index}`);
+                let prePostCell = document.getElementById(`prePost${index}`);
+                let restorationCell = document.getElementById(`restoration${index}`);
+                let powerCell = document.getElementById(`power${index}`);
+                let ConsumablesCell = document.getElementById(`Consumables${index}`);
+                let DayCell = document.getElementById(`Day${index}`);
+                let SublimitsCell = document.getElementById(`Sublimits${index}`);
+                let LifeCell = document.getElementById(`Life${index}`);
+                let HospitalCell = document.getElementById(`Hospital${index}`);
+                let ExtraCell = document.getElementById(`Extra${index}`);
+                let diseasesCell = document.getElementById(`diseases${index}`);
+                let DeductibleCell = document.getElementById(`Deductible${index}`);
+                let MaternityCell = document.getElementById(`Maternity${index}`);
+                let RoadCell = document.getElementById(`Road${index}`);
+                let OPDCell = document.getElementById(`OPD${index}`);
+                let PreventiveCell = document.getElementById(`Preventive${index}`);
+                
+                if (selectedCompany && selectedProduct && insuranceData[selectedCompany][selectedProduct]) {
+                    let productDetails = insuranceData[selectedCompany][selectedProduct];
+                    roomRentCell.textContent = productDetails.roomRent;
+                    copayCell.textContent = productDetails.copay;
+                    prePostCell.textContent = productDetails.prePost;
+                    restorationCell.textContent = productDetails.restoration;
+                    powerCell.textContent = productDetails.power;
+                    ConsumablesCell.textContent = productDetails.Consumables;
+                    DayCell.textContent = productDetails.Day;
+                    SublimitsCell.textContent = productDetails.Sublimits;
+                    LifeCell.textContent = productDetails.Life;
+                    HospitalCell.textContent = productDetails.Hospital;
+                    ExtraCell.textContent = productDetails.Extra;
+                    diseasesCell.textContent = productDetails.diseases;
+                    DeductibleCell.textContent = productDetails.Deductible;
+                    MaternityCell.textContent = productDetails.Maternity;
+                    RoadCell.textContent = productDetails.Road;
+                    OPDCell.textContent = productDetails.OPD;
+                    PreventiveCell.textContent = productDetails.Preventive;
+                } else {
+                    roomRentCell.textContent = "N/A";
+                    copayCell.textContent = "N/A";
+                    prePostCell.textContent = "N/A";
+                    restorationCell.textContent = "N/A";
+                    powerCell.textContent = "N/A";
+                    ConsumablesCell.textContent = "N/A";
+                    DayCell.textContent = "N/A";
+                    SublimitsCell.textContent = "N/A";
+                    LifeCell.textContent = "N/A";
+                    HospitalCell.textContent = "N/A";
+                    ExtraCell.textContent = "N/A";
+                    diseasesCell.textContent = "N/A";
+                    DeductibleCell.textContent = "N/A";
+                    MaternityCell.textContent = "N/A";
+                    RoadCell.textContent = "N/A";
+                    OPDCell.textContent = "N/A";
+                    PreventiveCell.textContent = "N/A";
+                }
+
+                function toggleMenu() {
+            document.querySelector(".menu").classList.toggle("active");
+
+
+          
+        // Simulated database
+       
+
+        // Initialize dropdowns on page load
+        populateCompanies();
+    
+
+           
+        
+        }
+            }
+    
+            // Initialize dropdowns on page load
+            populateCompanies();
+        </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Comparison</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        .button {
+            background: rgb(0,131,129);
+            background: linear-gradient(90deg, rgba(0,131,129,1) 12%, rgb(0, 21, 53) 12%);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            padding-left: 35px;
+            padding-right: 15px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 15px;
+        }
+        .button:hover {
+            background-color: #163a6a;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border: 1px solid #E5E7EB;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #E5E7EB;
+            text-align: center;
+        }
+        th {
+            background-color: #CCFBF1;
+        }
+        .bg-teal-100 {
+            background-color: #CCFBF1;
+        }
+        .select {
+            border: 1px solid #D1D5DB;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .download-button {
+            background-color: #14B8A6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+        }
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="flex-center">
+            <button class="button" onclick="downloadPDF()">COMPARE &amp; CHOOSE</button>
+        </div>
+        <h1 class="title">
+            NIA - Yuva Bharat Health -  Base Plan vs SBI Arogya Supreme Plus
+        </h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr class="bg-teal-100">
+                        <th class="bold-text">Select Insurance Company</th>
+                        <th>
+                            <div class="flex-center">
+                                <img src="https://storage.googleapis.com/a1aa/image/TnKXdpAWfzig3rRLxX3vs-WLanxl4G6VuthxBuwM7Jo.jpg" alt="SBI General Insurance logo" width="100" height="50">
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex-center">
+                                <img src="https://storage.googleapis.com/a1aa/image/G5pdCY2gbE8hdAIoWmjqWqakh5ePFZNehd1sztkkB7U.jpg" alt="Royal Sundaram Insurance logo" width="100" height="50">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-teal-100">
+                        <td class="bold-text">Select Product</td>
+                        <td>
+                            <select class="select">
+                                <option>NIA - Yuva Bharat Health -  Base Plan</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="select">
+                                <option>SBI Arogya Supreme Plus</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Room Rent Limit</td>
+                        <td>5 - 15 lacs Single Pvt A/C Room,25 lacs - 50 lacs- Dexule A/C room Rider is available for upgradation from 5lacs to 20lacs</td>
+                        <td>Single Pvt A/C Room, Upgradation Option are available</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Co-pay</td>
+                        <td>No co-pay for Zone 1, if Zone 2 client take treatment from Zone 1 then 10% will apply</td>
+                        <td>Optional cover - 10 and 20%</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Pre/Post Hospitalisation</td>
+                        <td>60 days - 90 days</td>
+                        <td>60 days and 90 days</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Restoration Benefit</td>
+                        <td>Once in a year for unrelated illness</td>
+                        <td>Once in a Year for all claims</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Power Booster/No claim Bonus</td>
+                        <td>10% every year, Max 30%</td>
+                        <td>15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Consumables Cover</td>
+                        <td>No co-pay for Zone 1, if Zone 2 client take treatment from Zone 1 then 10% will apply</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Day Care Procedure</td>
+                        <td>No</td>
+                        <td>537 Day care procedures</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Sublimits on Treatment of Diseases</td>
+                        <td>Table as per mentioned in the Policy wording</td>
+                        <td>Mental Treatment -10%  of SI Max - 50000</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Life Long Renewability</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Hospital Network</td>
+                        <td>2055</td>
+                        <td>16625</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Extra Strandout features</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Pre existing diseases waiting period</td>
+                        <td>2 years</td>
+                        <td>4 years</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Deductible</td>
+                        <td>NA</td>
+                        <td>10000 and 25000</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Maternity</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Road Ambulance</td>
+                        <td>5 to 15 lacs - 5000, 25 lacs - 7500, 50 lacs - 10000</td>
+                        <td>5000 per service</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">OPD coverage</td>
+                        <td></td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-text">Preventive Health Check up</td>
+                        <td>Yes after 2 claim free year</td>
+                        <td>Yes as per grid</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex-center">
+            <button class="download-button" onclick="downloadPDF()">Download</button>
+        </div>
+        <img class="watermark" src="https://storage.googleapis.com/a1aa/image/TnKXdpAWfzig3rRLxX3vs-WLanxl4G6VuthxBuwM7Jo.jpg" alt="Watermark" width="300" height="300">
+    </div>
+
+    <script>
+        async function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const content = document.getElementById('content');
+            const downloadButton = document.querySelector('.download-button');
+            downloadButton.style.display = 'none'; // Hide the download button
+
+            const canvas = await html2canvas(content, { scale: 2 });
+            const imgData = canvas.toDataURL('image/png');
+
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+            pdf.save('insurance_comparison.pdf');
+
+            downloadButton.style.display = 'block'; // Show the download button again
+        }
+    </script>
+</body>
+</html>
