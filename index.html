@@ -8,6 +8,13 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    
    
     <style>
         /* General body styling */
@@ -25,13 +32,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
-           
+            font-size: 16PX;
+            font-weight: 600PX;
             position: relative;
+            color: #04374e;
+            
         }
 
         .logo img {
             height: 50px;
             width: 150px;
+            Size: 310px
+
         }
 
         .menu {
@@ -41,29 +53,30 @@
 
         .menu a {
             text-decoration: none;
-            color: #333;
+            color:  #023A51            ;
             font-size: 1.2rem;
             padding: 0.5rem 1rem;
         }
 
         .menu a:hover,
         .menu a.active {
-            color: #007BFF;
-            border-bottom: 2px solid #007BFF;
+            color: #FF5757;
+            border-bottom: 2px solid #FF5757;
         }
 
         button {
             padding: 0.75rem 1.5rem;
-            background-color: #38B2AC;
-            color: white;
+            background-color:  #4EE2EC;
+            color:  #FFFFFF;
             border: none;
-            border-radius: 5px;
+            border-radius: 12 px ;           ;
             cursor: pointer;
             font-size: 1rem;
         }
 
         button:hover {
-            background-color: #319795;
+            background-color:  #B3FAFF;
+            color:  #FF5757;            ;
         }
 
         /* Mobile Styles */
@@ -209,7 +222,7 @@
 
         .data {
             background: rgb(0,131,129);
-            background: linear-gradient(90deg, rgba(0,131,129,1) 12%, rgb(0, 21, 53) 12%);
+            background: linear-gradient(90deg,  #4EE2EC            12%,#023A51            12%);
             color: white;
             padding: 12px;
             border-radius: 12px;
@@ -240,12 +253,16 @@
         .btn1 {
             color: rgb(0, 89, 85);
             border: #eaf2f8;
-            font-size: 16px;
+            font-size: 18px;
             margin-left: 40px;
-            font-weight: 600;
+            font-weight: 500;
             margin-top: -55px;
             padding-bottom: 25px;
             margin-top: -25px;
+           
+            font-family: "Poppins", sans-serif;
+           
+
            
         }
 
@@ -334,6 +351,8 @@ th select option {
         width: 80%;
         padding: 5px;
     }
+
+    
     
 </style>
 
@@ -343,7 +362,7 @@ th select option {
         <div class="logo">
             <img src="https://herculesadvisors.in/wp-content/uploads/2024/11/Untitled-design-2-e1731668329705.png" alt="Hercules Insurance Logo">
         </div>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
         <div class="menu">
             <a href="#" class="active">Home</a>
             <a href="#">Insurance</a>
@@ -351,15 +370,23 @@ th select option {
             <a href="#">About Us</a>
             <a href="#">Contact Us</a>
         </div>
-        <button>Claim</button>
+        <div class="button-container">
+            <button class="claim-button">
+                Claim Here<span class="glowing-dot"></span>
+            </button>
+        </div>
     </nav>
-    <button class="data" style="margin-top: 35px;">COMPARE & CHOOSE</button>
+    <img src="https://via.placeholder.com/150" id="watermark" 
+    style="position:absolute; opacity:0.1; width: 800px; height: auto;">
 
-    <h1 style="margin-top: 65px; color: #04374e;">SBI Arogya Supreme Pro vs Royal Sundaram Next Gen vs NIA -<br>
-        Yuva Bharat Health - Base Plan</h1>
-
-        <div class="container">
+    
        
+            <div class="container" id="table-container">
+
+                <button class="data">COMPARE & CHOOSE</button>
+
+    <h1 style="margin-top: 35px; color: #04374e;">Smart Insurance Comparison<br>
+         Discover the Perfect Coverage for You</h1>
 
             <table>
                     <tr>
@@ -420,10 +447,10 @@ th select option {
                     <td id="prePost3">N/A</td>
                 </tr>
                 <tr>
-                    <th>Restoration Benefit</th>
-                    <td id="restoration1">N/A</td>
-                    <td id="restoration2">N/A</td>
-                    <td id="restoration3">N/A</td>
+                    <th>Consumables Cover</th>
+                    <td id="Consumables1">N/A</td>
+                    <td id="Consumables2">N/A</td>
+                    <td id="Consumables3">N/A</td>
                 </tr>
                 <tr>
                     <th>Power Booster/No claim Bonus</th>
@@ -432,11 +459,12 @@ th select option {
                     <td id="power3">N/A</td>
                 </tr>
                 <tr>
-                    <th>Consumables Cover</th>
-                    <td id="Consumables1">N/A</td>
-                    <td id="Consumables2">N/A</td>
-                    <td id="Consumables3">N/A</td>
+                    <th>Restoration Benefit</th>
+                    <td id="restoration1">N/A</td>
+                    <td id="restoration2">N/A</td>
+                    <td id="restoration3">N/A</td>
                 </tr>
+                
                 <tr>
                     <th>Day Care Procedure</th>
                     <td id="Day1">N/A</td>
@@ -498,111 +526,91 @@ th select option {
                     <td id="OPD3">N/A</td>
                 </tr>
                 <tr>
+                    <th>Initial Waiting</th>
+                    <td id="wait1">N/A</td>
+                    <td id="wait2">N/A</td>
+                    <td id="wait3">N/A</td>
+                </tr>
+                <tr>
                     <th>Preventive Health Check up</th>
                     <td id="Preventive1">N/A</td>
                     <td id="Preventive2">N/A</td>
                     <td id="Preventive3">N/A</td>
                 </tr>
 
-                <tr>
-                    <th>Initial Waiting</th>
-                    <td id="wait1">N/A</td>
-                    <td id="wait2">N/A</td>
-                    <td id="wait3">N/A</td>
-                </tr>
+                
             </table><br>
             
-            <button onclick="window.print()"><i class="fa fa-download"></i> Download</button>
-        </div>
            
-            
+        </div>
+        <!-- watermark-->
+        <div class="watermark" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1;">
+            <img src="https://herculesadvisors.in/wp-content/uploads/2024/11/Untitled-design-2-e1731668329705.png" alt="Hercules Insurance Logo" style="width: 800px; height: auto;">
+        </div>
+
+        <!-- Print / Download Button-->
+        <button onclick="window.print()"><i class="fa fa-download"></i> Download</button> 
+       
         
-       
 
-
-
-       
-
-    
-    
+           
+                
   
     <div id="serviceInfo" class="service-info">
         <h2 id="serviceTitle"></h2>
         <p id="serviceDescription"></p>
     </div>
     
-   <div class="data1">
-        <h2>Product Benefits:</h2>
-        <h2>SBI Arogya Supreme Pro </h2>
-        <p>The SBI Arogya Supreme Pro Secure Plan offers comprehensive coverage that includes hospitalisation, pre-hospitalisation, and post-hospitalisation expenses. However, that the pre-hospitalisation expenses are covered for up to 60 days before hospital admission and post-hospitalisation expenses up to 180 days after discharge, all up to the sum insured. In addition, the policy pays up to the sum insured amount for all day care services, domiciliary treatments, expenses of donors for organ donation procedures, modern treatments, and non-medical expenses. Moreover, with no restrictions on room rent, the SBI Arogya Supreme Pro Plan gives you the freedom to select any room. There is no limit on ICU rent and no provision for copayments either. However, an optional deductible is applicable under the policy, and you have the flexibility to choose from the following options: 25K/50K/100K/200K/300K as an option. Common medical procedures and treatments, such as joint replacement surgery and cataract treatments, are not restricted under this plan and are therefore covered up to the sum insured. Notably, under this plan, specific treatments have a 24-month waiting time, whereas pre-existing conditions have a 36-month waiting period.</p>
-
-        <h2>Royal Sundaram Next Gen</h2>
-        <p>The Royal Sundaram Next Gen Plan provides comprehensive coverage that encompasses hospitalisation costs, as well as pre and post-hospitalization expenses. Pre-hosp expenses are covered for up to 90 days before admission, while post-hospitalization expenses are covered for up to 180 days after discharge, both within the sum insured. Additionally, the policy covers all daycare treatments, domiciliary treatments (except for 15 illnesses), expenses of donors for organ donation procedures, and modern treatments all up to the sum insured. Please note that non-medical expenses are covered up to the sum assured as an add-on. Moreover, the plan offers the flexibility to choose any room without imposing room rent limits, though it is available as an add-on. There are no limits on ICU rent or deductibles. Also, this plan offers an optional co-payment of 10% to 50%. The policy covers common medical treatments and surgeries, such as cataract and joint replacement surgeries, up to the sum insured. However, it's important to note that pre-existing conditions and specific conditions have a 12-month waiting period (as an add-on). As an add-on, this plan allows a 90-day waiting period for conditions like BP, Diabetes, and Heart Disease (unless these diseases are classified as pre-existing conditions).</p>
-
-        <h2>NIA - Yuva Bharat Health - Base Plan</h2>
-        <p>The NIA - Yuva Bharat Health - Base Plan Plan provides comprehensive coverage for hospitalisation, pre-hospitalisation, and post-hospitalisation expenses. It covers pre- costs for up to 60 days before you're admitted and post-hospitalisation expenses for up to 90 days after discharge, all within the sum insured. Plus, it includes everything from day care procedures and domiciliary treatments to expenses for organ donation, modern treatments, and non-medical expenses, all up to sum assured. The Tata AIG MediCare Premier Plan gives you the freedom to choose any hospital room without room rent limits. Furthermore, there is no ICU rent limit, copayments, or deductibles under the plan. The policy places no restrictions on common medical treatments or surgeries, like cataracts, joint replacement surgeries, etc. However, it's important to know that pre-existing conditions come with a 24-month waiting period, and certain specific diseases also carry a 24-month waiting period.</p>
-    </div>
+   
 
    
          <script>
-
-            function downloadPageAsPDF() {
-            const { jsPDF } = window.jspdf;
-            let doc = new jsPDF();
-
-            html2canvas(document.getElementById("content")).then(canvas => {
-                let imgData = canvas.toDataURL("image/png");
-                let imgWidth = 190;  // A4 width in mm (210mm minus margins)
-                let imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                doc.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
-                doc.save("webpage.pdf");
-            });
-        }
-            // Simulated database
+           
+           // Simulated database
             const insuranceData = {
                 "State Bank of india": 
                 {
-                    "aaroyga Supreme pro": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Optional cover - 10 and 20%", prePost: "30 days and 60 days", restoration: "No", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000, Cataract - per eye 1 lacs",Life: "Yes", Hospital: "16625", Extra: "Covering Genetic Disorder, Bariatric Surgery Cover,  Enhanced Cumulative Bonus- 50% up to a maximum of 200%", diseases: "4 years ",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "NO", Preventive: "Yes as per grid " , wait : "-" },
-                    "aaroyga Supreme plus": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Single Pvt A/C Room, Upgradation Option are available", prePost: "60 days and 90 days", restoration: "NO", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a Year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000",Life: "Yes", Hospital: "16625", Extra: "--", diseases: "4 years",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "No", wait : "-" , Preventive: "Yes as per grid" },
-                    "Aaroyga supreme Premium": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Optional cover - 10 and 20%", prePost: "30 days and 60 days", restoration: "No", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000, Cataract - per eye 1 lacs",Life: "Yes", Hospital: "16625", Extra: "Covering Genetic Disorder, Bariatric Surgery Cover,  Enhanced Cumulative Bonus- 50% up to a maximum of 200%", diseases: "4 years ",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "NO", Preventive: "Yes as per grid " , wait : "-" },
-                    "Aaroyga Plus": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Single Pvt A/C Room, Upgradation Option are available", prePost: "60 days and 90 days", restoration: "NO", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a Year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000",Life: "Yes", Hospital: "16625", Extra: "--", diseases: "4 years",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "No", wait : "-" , Preventive: "Yes as per grid" },
-                    "Super Health Elite": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Optional cover - 10 and 20%", prePost: "30 days and 60 days", restoration: "No", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000, Cataract - per eye 1 lacs",Life: "Yes", Hospital: "16625", Extra: "Covering Genetic Disorder, Bariatric Surgery Cover,  Enhanced Cumulative Bonus- 50% up to a maximum of 200%", diseases: "4 years ",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "NO", Preventive: "Yes as per grid " , wait : "-" },
-                    "Super health platinum": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Single Pvt A/C Room, Upgradation Option are available", prePost: "60 days and 90 days", restoration: "NO", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a Year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000",Life: "Yes", Hospital: "16625", Extra: "--", diseases: "4 years",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "No", wait : "-" , Preventive: "Yes as per grid" },
-                    "aaroyga Supreme pro": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Optional cover - 10 and 20%", prePost: "30 days and 60 days", restoration: "No", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000, Cataract - per eye 1 lacs",Life: "Yes", Hospital: "16625", Extra: "Covering Genetic Disorder, Bariatric Surgery Cover,  Enhanced Cumulative Bonus- 50% up to a maximum of 200%", diseases: "4 years ",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "NO", Preventive: "Yes as per grid " , wait : "-" },
-                    "Super health platinum infinite ": { roomRent: "Single Pvt A/C Room, Upgradation Option are available", copay: "Optional cover - 10 and 20%", prePost: "30 days and 60 days", restoration: "No", power: "15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", Consumables: "Once in a year for all claims", Day: "537 Day care procedures", Sublimits: "Mental Treatment -10%  of SI Max - 50000, Cataract - per eye 1 lacs",Life: "Yes", Hospital: "16625", Extra: "Covering Genetic Disorder, Bariatric Surgery Cover,  Enhanced Cumulative Bonus- 50% up to a maximum of 200%", diseases: "4 years ",Deductible: "10000 and 25000", Maternity: "NA", Road: "5000 per service", OPD: "NO", Preventive: "Yes as per grid " , wait : "-" },
+                    "aaroyga Supreme pro": { roomRent:"Single Pvt A/C Room, Upgradation Option are available", copay:"Optional cover - 10 and 20%",  prePost:"30 days and 60 days", Consumables:"No", power:"15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", restoration:"Once in a year for all claims", Day:"537 Day care procedures", Sublimits:"Mental Treatment -10%  of SI Max - 50000, Cataract - per eye 1 lacs", Life:"Yes", Hospital:"16625", Extra:"Covering Genetic Disorder, Bariatric Surgery Cover,  Enhanced Cumulative Bonus- 50% up to a maximum of 200%", diseases:"4 years", Deductible:"10000 and 25000", Maternity:"NA", Road:"5000 per service", OPD:"NO", wait:"--", Preventive:"Yes as per grid " },
+                    "aaroyga Supreme plus": { roomRent:"Single Pvt A/C Room, Upgradation Option are available", copay:"aSingle Pvt A/C Room, Upgradation Option are available",  prePost:"60 days and 90 daysa", Consumables:"NO", power:"a15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", restoration:"aOnce in a Year for all claims", Day:"a537 Day care procedures", Sublimits:"aMental Treatment -10%  of SI Max - 50000", Life:"Yes", Hospital:"16625", Extra:"", diseases:"4 years", Deductible:"10000 and 25000", Maternity:"NA", Road:"5000 per service", OPD:"NO", wait:"--", Preventive:"Yes as per grid"},
+                    "Aaroyga supreme Premium": { roomRent:"Single Pvt A/C Room, Upgradation Option are available", copay:"Optional cover - 10 and 20%",  prePost:"60 days and 180 days", Consumables:"NO", power:"15% per year and upto maximum of SI, Will dedcute at same rate if the claim rise", restoration:"Once in a Year for all claims", Day:"537 Day care procedures", Sublimits:"Mental Treatment -10%  of SI Max - 50000", Life:"Yes", Hospital:"16625", Extra:"", diseases:"4 years", Deductible:"10000 and 25000", Maternity:"NA", Road:"5000 per service", OPD:"NO", wait:"", Preventive:"Yes as per grid"},
+                    "Aaroyga Plus": { roomRent:"Up to Sum Insured", copay:"No co-pay",  prePost:"60 days and 90 days", Consumables:"NO", power:"NO Bonus", restoration:"No restoration", Day:"142 procedure", Sublimits:"No Sublimit", Life:"NO", Hospital:"16625", Extra:"Premium will be same for lifelong but however this policy is not active for new buyers", diseases:"4 Years", Deductible:"NA", Maternity:"After 9 months ", Road:"1500 Rs per event", OPD:"As per Slab, Max 500 Rs", wait:"", Preventive:"NA"},
+                    "Super Health Elite": { roomRent:"Upto Sum Insured ", copay:"Optional 10% and 20% ",  prePost:"60 days - 90 days ", Consumables:"Inbuilt", power:"For 3 lacs till 10 lacs - 2X of SI, 15 lacs above - 3X of SI", restoration:"100% for One time, for Related and Unrelated illness", Day:"All day care is covered", Sublimits:"Bariatic surgery - 50k", Life:"Yes", Hospital:"16625", Extra:"", diseases:"2 years", Deductible:"1 lacs/2 lacs/3 lacs ", Maternity:"NA", Road:"Rs 3000 per hospitalization", OPD:"NA", wait:"", Preventive:"Up to Rs 2,500 after 1st year"},
+                    "Super health platinum": { roomRent:"Upto Sum Insured ", copay:"Optional 10% and 20% ",  prePost:"60 days - 90 days ", Consumables:"Inbuilt", power:"For 3 lacs till 10 lacs - 2X of SI, 15 lacs above - 3X of SI", restoration:"100% for One time, for Related and Unrelated illness", Day:"All day care is covered", Sublimits:"Bariatic surgery - 200k", Life:"Yes", Hospital:"16625", Extra:"Enchanced Cumulative bonus, OPD benefits, Global coverage ", diseases:"2 years", Deductible:"3 lacs/5 lacs", Maternity:"Upto Rs 50,000 (N)/Rs 75,000(C-sec)", Road:"Rs 5000 per hospitalization", OPD:"Single Adult – Rs 5,000; All other family combinations - Up to Rs 10,000/Family", wait:"--", Preventive:"Up to Rs 5,000 from 1st year itself"},
+                    "Super health prime": { roomRent:"Upto Sum Insured ", copay:"Optional 10% and 20% ",  prePost:"60 days - 90 days ", Consumables:"Inbuilt", power:"2X of Base SI ", restoration:"100% for One time, for Related and Unrelated illness", Day:"All day care is covered", Sublimits:"Bariatic surgery - 50k", Life:"Yes", Hospital:"16625", Extra:"Enchanced Cumulative bonus and OPD benefits ", diseases:"2 years", Deductible:"1 lacs/2 lacs/3 lacs ", Maternity:"Upto 25000 (N)/50000 (C-sec)", Road:"Rs 4000 per hospitalization", OPD:"NA", wait:" -- ", Preventive:"Up to Rs 2,500 after 1st year"},
+                    "Super health platinum infinite ": { roomRent:"Upto Sum Insured ", copay:"Optional 10% and 20% ",  prePost:"60 days - 180 days ", Consumables:"Inbuilt", power:"3X of Base SI ", restoration:"200% for One time, for Related and Unrelated illness", Day:"All day care is covered", Sublimits:"Bariatic surgery - 200k", Life:"Yes", Hospital:"16625", Extra:"Enchanced Cumulative bonus, OPD benefits and Global coverage", diseases:"2 years", Deductible:"5lacs / 10 lacs", Maternity:"Up to 2 Lac", Road:"Up to sum insured per hospitalization", OPD:"Single Adult – Rs 10,000; All other family combinations - Up to Rs 20,000/Family", wait:"--", Preventive:"Up to Rs 10,000 from 1st year itself"},
                    
                    
                 },
                 "Manipal Cigna": {
-                    "Lifeline Health Insurance - Classic": { roomRent: "Any room can occupy", copay: "No", prePost: "30 and 60 days ", restoration: "Optional cover", power: "10% per year, (up to 50%)", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "NA",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay", diseases: "48 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 3000", OPD: "NA", wait: "30 days", Preventive: "Once every 2 years" },
-                    "Lifeline Health Insurance - Supreme": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
-                    "Lifeline Health Insurance - Elite": { roomRent: "Any room can occupy", copay: "No", prePost: "30 and 60 days ", restoration: "Optional cover", power: "10% per year, (up to 50%)", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "NA",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay", diseases: "48 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 3000", OPD: "NA", wait: "30 days", Preventive: "Once every 2 years" },
-                    "Sarvah Uttam": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
-                    "Sarvah Pratham": { roomRent: "Any room can occupy", copay: "No", prePost: "30 and 60 days ", restoration: "Optional cover", power: "10% per year, (up to 50%)", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "NA",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay", diseases: "48 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 3000", OPD: "NA", wait: "30 days", Preventive: "Once every 2 years" },
-                    "Sarvah Param": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
-                    "Pro Health Select Plan A": { roomRent: "Any room can occupy", copay: "No", prePost: "30 and 60 days ", restoration: "Optional cover", power: "10% per year, (up to 50%)", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "NA",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay", diseases: "48 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 3000", OPD: "NA", wait: "30 days", Preventive: "Once every 2 years" },
-                    "Pro Health Select Plan B": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
+                    "Lifeline Health Insurance - Classic ": { roomRent:"Any room can occupy", copay:"NO",  prePost:"30 and 60 days ", Consumables:"Optional cover", power:"10% per year, (up to 50%)", restoration:"100% restoration for once in a year, for unrelated illness", Day:"All covered upto SI", Sublimits:"NA", Life:"NA", Hospital:"11800", Extra:"Voluntary Co-pay", diseases:"48 months ", Deductible:"NA", Maternity:"NA", Road:"Upto 3000", OPD:"NA", wait:"30 days", Preventive:"Once every 2 years"},
+                    "Lifeline Health Insurance - Supreme": { roomRent:"Any room can occupy", copay:"NO",  prePost:"60 and 90 days", Consumables:"Optional cover", power:"20% per year, upto 100%", restoration:"100% restoration for once in a year, for unrelated illness", Day:"All covered upto SI", Sublimits:"Up to Rs 50,000, with a 6 year waiting period.", Life:"NA", Hospital:"11800", Extra:"Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases:"36 months ", Deductible:"NA", Maternity:"NA", Road:"Upto 5000", OPD:"NA", wait:"30 days", Preventive:"Once every year"},
+                    "Lifeline Health Insurance - Elite": { roomRent:"Any room can occupy", copay:"NO",  prePost:"60 and 180 days", Consumables:"Optional cover", power:"", restoration:"100% restoration for once in a year, for unrelated illness", Day:"All covered upto SI", Sublimits:"Up to Rs.2 Lakhs with a 6 year waiting period.", Life:"NA", Hospital:"11800", Extra:"International Treatment abroad for specified 11 critical illnesses Excluding US and Canada, Vaccination for animal bite, Mobility Devices - Wheel chairs, Crutches, etc.", diseases:"24 month", Deductible:"NA", Maternity:"Covered as per limit", Road:"Upto 10000", OPD:"Yes", wait:"30 days ", Preventive:"Once every year"},
+                    "Sarvah Uttam": { roomRent:"Single Private A/C Room", copay:"Optional ",  prePost:"90 and 180 days", Consumables:"Yes", power:"Optional ", restoration:"Optional ", Day:"All Day Care Procedure covered up to Sum Insured.", Sublimits:"NA", Life:"Yes", Hospital:"8500", Extra:"Reduce the Waiting period to 0 days as optional, Add upto 10X bonus as optional", diseases:"36 months", Deductible:"Yes in  Aggregate Deductible and in Per day system", Maternity:"After 36 months Upto 2 deliveries or termination, Its optional benefits", Road:"Upto SI", OPD:"NO", wait:"30 days", Preventive:"Optional, Annually from 1st year onwards, for all adults insured, offered through Network only"},
+                    "Sarvah Pratham": { roomRent:"Single Private A/C Room", copay:"Optional",  prePost:"90 and 180 days", Consumables:"Yes", power:"Optional ", restoration:"Optional", Day:"Specified disease/ Illness such as Cancer, Heart, Stroke, & Major Organ/ Bone Marrow Transplant, as defined under section C.II 19", Sublimits:"NA", Life:"Yes", Hospital:"8500", Extra:"Reduce the Waiting period to 0 days as optional, Add upto 10X bonus as optional", diseases:"36 months", Deductible:"Yes in  Aggregate Deductible and in Per day system", Maternity:"NA", Road:"Upto SI", OPD:"NO", wait:"30 days", Preventive:"Optional, Annually from 1st year onwards, for all adults insured, offered through Network only"},
+                    "Sarvah Param": { roomRent:"Single Private A/C Room", copay:"Optional ",  prePost:"90 and 180 days", Consumables:"Yes", power:"100% every year upto 1000%", restoration:"Unlimited times for related/unrelated illnesses", Day:"All Day Care Procedure covered up to Sum Insured", Sublimits:"NA", Life:"Yes", Hospital:"8500", Extra:"Reduce the Waiting period to 0 days", diseases:"36 months", Deductible:"Yes in  Aggregate Deductible and in Per day system", Maternity:"NA", Road:"Upto SI", OPD:"Yes optional", wait:"30 days", Preventive:"Available as per Sum Insured"},
+                    "Pro Health Select Plan A": { roomRent:"Upto 2% or 3000 per hospitalization", copay:"NO but optinal 10 and 20%",  prePost:"60 and 90 days", Consumables:"Optional", power:"5% each year maximum up to 100% on non-reducing basis", restoration:"Available once in a policy year for unrelated illnesses in addition to the Sum Insured opted. Available for all Sum Insured's except ` 0.5L and ` 1L", Day:"t 171 procedures, Covered up to full sum insured", Sublimits:"Yes in specific Illness", Life:"Yes", Hospital:"8500", Extra:"Optional coverage for Modification in Room, Automatic Extension of Policy for 2 years on diagnosis of a Critical Illness or Permanent Total Disability due to Accident ", diseases:"48 months", Deductible:"Yes optional", Maternity:"NO", Road:"Upto 2000 Rs", OPD:"NO", wait:"30 days ", Preventive:"Every year for all Insured Persons above 18 years based on the applicable Grid"},
+                    "Pro Health Select Plan B": { roomRent:"Upto 2% or 3000 per hospitalization", copay:"NO",  prePost:"60 and 90 days", Consumables:"Optional", power:"5% each year maximum up to 100% on non-reducing basis", restoration:"Available once in a policy year for unrelated illnesses in addition to the Sum Insured opted. Available for all Sum Insured's except ` 0.5L and ` 1L", Day:"t 171 procedures, Covered up to full sum insured", Sublimits:"Yes in specific Illness", Life:"Yes", Hospital:"8500", Extra:"Optional coverage for Modification in Room, Automatic Extension of Policy for 2 years on diagnosis of a Critical Illness or Permanent Total Disability due to Accident", diseases:"48 months ", Deductible:"Yes Optional ", Maternity:"NO", Road:"Upto 2000 Rs", OPD:"NO", wait:"30 days", Preventive:"NO"},
 
                 },
                 "Star Health": {
-                    "Star Comphrensive ":  { roomRent: "Any room can occupy", copay: "No", prePost: "30 and 60 days ", restoration: "Optional cover", power: "10% per year, (up to 50%)", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "NA",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay", diseases: "48 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 3000", OPD: "NA", wait: "30 days", Preventive: "Once every 2 years" },
-                    "Family Health Optima ": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
-                    "Super star ": { roomRent: "$5000/day", copay: "50%", prePost: "70 days", restoration: "Yes", power: "143", Consumables: "325", Day: "547 days", Sublimits: "Yes",Life: "847", Hospital: "957", Extra: "4313", diseases: "Yes",Deductible: "tyz", Maternity: "ahc", Road: "bandu", OPD: "nice", Preventive: "jn" },
-                    "Health Assure  ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
-                    "Smart Health Pro": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
-                    "YoungStar ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
-                    "Medi classic  ": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
-                    "Star Red Carpet ": { roomRent: "$6000/day", copay: "60%", prePost: "80 days", restoration: "NO", power: "173", Consumables: "341", Day: "537 days", Sublimits: "Yes",Life: "895", Hospital: "908", Extra: "4953", diseases: "Yes",Deductible: "xyy", Maternity: "abch", Road: "bandu", OPD: "nice", Preventive: "oifjdn" },
-                    "Diabeties Safe": { roomRent: "Any room can occupy", copay: "No", prePost: "60 and 90 days", restoration: "Optional cover", power: "20% per year, upto 100%", Consumables: "100% restoration for once in a year, for unrelated illness", Day: "All covered upto SI", Sublimits: "Up to Rs 50,000, with a 6 year waiting period.",Life: "NA", Hospital: "11800", Extra: "Voluntary Co-pay, Mobility Devices - Wheel chairs, Crutches, etc.", diseases: "36 months ",Deductible: "NA", Maternity: "NA", Road: "Upto 5000", OPD: "NA", wait: "30 days",Preventive: "Once every year" },
+                    "Star Comphrensive": { roomRent:"Single private a/c room", copay:"NO",  prePost:"60 days/90 days", Consumables:"NO", power:"50% bonus upto 100%", restoration:"Once a year ", Day:"Yes", Sublimits:"yes on many illnesses", Life:"Yes", Hospital:"14000", Extra:"OPD cover Covered upto ₹2,100 per year", diseases:"Covered after 3 years", Deductible:"Yes", Maternity:"Upto ₹30,000 for normal and upto ₹50,000 for c-sec", Road:"aCovered at actual cost", OPD:"Yes available", wait:"", Preventive:""},
+                    "Super star": { roomRent:"NO", copay:"NO",  prePost:"90 days/180 days", Consumables:"Yes", power:"50% bonus upto 100% with the addition of a rider100% additional sum insured after each renewal (irrespective of claim) without any maximum limit on accumulation (Unlimited)", restoration:"Unlimited Restoration", Day:"Yes", Sublimits:"NO", Life:"Yes", Hospital:"14000", Extra:"One unlimited claim,MAternity benefit,Waiver of premium ", diseases:"3 years waiting period But waiver available for Asthama,Hypertension Cholestrol and diabeties", Deductible:"Yes", Maternity:"Yes with rider", Road:"Covered at actual cost", OPD:"Available upto 25,000 with a rider", wait:"", Preventive:""},
+                    "Health Assure": { roomRent:"Any category except suite and above", copay:"NO",  prePost:"60 days/180 days", Consumables:"Yes", power:"5% of the Sum Insured for each claim-free year subject to a maximum of 100% of the Sum Insured.", restoration:"Unlimited Restoration", Day:"Yes", Sublimits:"Yes on many illnesses", Life:"Yes", Hospital:"14000", Extra:"New Born Baby is covered from Day 1 (Premium will be charged at the time of policy renewal)", diseases:"Covered after 3 years", Deductible:"Yes", Maternity:"Covered upto ₹1 lakh", Road:"covered upto sum insured", OPD:"NO", wait:"", Preventive:""},
+                    "Smart Health Pro": { roomRent:"Single private ac room", copay:"NO",  prePost:"60/180", Consumables:"yes with rider", power:"50% upto mazimum of 100%", restoration:"100% os Bse Sun insured once a year", Day:"upto sum insured", Sublimits:"Yes", Life:"Yes", Hospital:"14000", Extra:"None", diseases:"3 years", Deductible:"Yes", Maternity:"NO", Road:"Upto Sum insured", OPD:"NO", wait:"", Preventive:""},
+                    "YoungStar": { roomRent:"Single private ac room", copay:"NO",  prePost:"60/90", Consumables:"NO", power:"20% upto mazimum of 100%", restoration:"100% of Base sum insured once a year", Day:"upto sum insured", Sublimits:"Yes", Life:"Yes", Hospital:"14000", Extra:"None", diseases:"1 years", Deductible:"Yes", Maternity:"30,000", Road:"Upto Sum insured", OPD:"NO", wait:"", Preventive:""},
+                    "Medi classic ": { roomRent:"Yes", copay:"NO",  prePost:"30/60", Consumables:"NO", power:"20% upto mazimum of 100%", restoration:"100% base sum insured twice a year", Day:"upto sum insured", Sublimits:"Yes", Life:"Yes", Hospital:"14000", Extra:"None", diseases:"3 years", Deductible:"Yes", Maternity:"None", Road:"750 per hospitalisation", OPD:"None", wait:"", Preventive:""},
+                    "Star Red Carpet": { roomRent:"Any room upto ₹6,000 per day", copay:"30% copay",  prePost:"30days/60 daysa", Consumables:"NO", power:"NO", restoration:"NO", Day:"covered upto sum insured", Sublimits:"Yes", Life:"Yes", Hospital:"14000", Extra:"NO", diseases:"1 year waiting", Deductible:"Yes", Maternity:"NO", Road:"Yes", OPD:"NO", wait:"", Preventive:""},
+                    "Diabeties Safe": { roomRent:"Single pricate ac room", copay:"NO",  prePost:"30/60", Consumables:"NO", power:"NO", restoration:"once a year upto sum insured", Day:"covered upto sum insured", Sublimits:"Yes", Life:"Yes", Hospital:"14000", Extra:"low waiting period for diabeties", diseases:"Diabetes covered after 1 year and others after 3 years", Deductible:"Yes", Maternity:"NO", Road:"Yes", OPD:"NO", wait:"", Preventive:""},
+
                 },
 
-                "New India": {
-                    "Yuva Bharat Health plan - Base": { roomRent: "Upto to 1% of Sum Insured per day", copay: "Optional 20% Copay", prePost: "30 and 60 days ", restoration: "Optional cover", power: "25% SI for claim free year with Max 50% of SI.", Consumables: "One time after exhauastion of SI for unrelated Illness ", Day: "226 Day care covered", Sublimits: "Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.",Life: "Yes", Hospital: "2055", Extra: "Nothing special ", diseases: "36 months",Deductible: "NA", Maternity: "After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road: "1% of SI", OPD: "NA",wait:"30 days" ,Preventive: "every 3 claim free years" },
-                    "New India Mediclaim Policy":  { roomRent: "Upto to 1% of Sum Insured per day", copay: "Optional 20% Copay", prePost: "30 and 60 days ", restoration: "Optional cover", power: "25% SI for claim free year with Max 50% of SI.", Consumables: "One time after exhauastion of SI for unrelated Illness ", Day: "226 Day care covered", Sublimits: "Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.",Life: "Yes", Hospital: "2055", Extra: "Nothing special ", diseases: "36 months",Deductible: "NA", Maternity: "After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road: "1% of SI", OPD: "NA",wait:"30 days" ,Preventive: "every 3 claim free years" },
-                    "Yuva Bharat Health plan - Base":  { roomRent: "Upto to 1% of Sum Insured per day", copay: "Optional 20% Copay", prePost: "30 and 60 days ", restoration: "Optional cover", power: "25% SI for claim free year with Max 50% of SI.", Consumables: "One time after exhauastion of SI for unrelated Illness ", Day: "226 Day care covered", Sublimits: "Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.",Life: "Yes", Hospital: "2055", Extra: "Nothing special ", diseases: "36 months",Deductible: "NA", Maternity: "After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road: "1% of SI", OPD: "NA",wait:"30 days" ,Preventive: "every 3 claim free years" },
-                    "New India Flloater Mediclaim":  { roomRent: "Upto to 1% of Sum Insured per day", copay: "Optional 20% Copay", prePost: "30 and 60 days ", restoration: "Optional cover", power: "25% SI for claim free year with Max 50% of SI.", Consumables: "One time after exhauastion of SI for unrelated Illness ", Day: "226 Day care covered", Sublimits: "Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.",Life: "Yes", Hospital: "2055", Extra: "Nothing special ", diseases: "36 months",Deductible: "NA", Maternity: "After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road: "1% of SI", OPD: "NA",wait:"30 days" ,Preventive: "every 3 claim free years" },
-                    "Yuva Bharat Health - Platinum Plan":  { roomRent: "Upto to 1% of Sum Insured per day", copay: "Optional 20% Copay", prePost: "30 and 60 days ", restoration: "Optional cover", power: "25% SI for claim free year with Max 50% of SI.", Consumables: "One time after exhauastion of SI for unrelated Illness ", Day: "226 Day care covered", Sublimits: "Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.",Life: "Yes", Hospital: "2055", Extra: "Nothing special ", diseases: "36 months",Deductible: "NA", Maternity: "After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road: "1% of SI", OPD: "NA",wait:"30 days" ,Preventive: "every 3 claim free years" },
+                "New India Assurance": {
+                    "New India Mediclaim Policy ": { roomRent:"Upto to 1% of Sum Insured per day", copay:"Optional 20% Copay",  prePost:"30 and 60 days", Consumables:"Optional cover", power:"25% SI for claim free year with Max 50% of SI.", restoration:"One time after exhauastion of SI for unrelated Illness ", Day:"226 Day care covered", Sublimits:"Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.", Life:"Yes", Hospital:"", Extra:"Nothing special", diseases:"36 months", Deductible:"NA", Maternity:"After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road:"1% of SI", OPD:"NA", wait:"30 days", Preventive:"every 3 claim free years"},
+                    "New India Flloater Mediclaim": { roomRent:"Upto to 1% of Sum Insured per day", copay:"Optional 20% Copay",  prePost:"30 and 60 days ", Consumables:"Optional cover", power:"25% SI for claim free year with Max 50% of SI.", restoration:"One time after exhauastion of SI for unrelated Illness ", Day:"226 Day care covered", Sublimits:"Cataract, up to 20% of Sum Insured or INR 50,000, whichever is less, for each eye.", Life:"Yes", Hospital:"2055", Extra:"Nothing special", diseases:"36 months", Deductible:"NA", Maternity:"After 3 years, Maternity shall not exceed 10% of the average Sum Insured ", Road:"1% of the Sum Insured.", OPD:"NA", wait:"30 days", Preventive:"NA"},
+                    "Yuva Bharat Health plan - Base": { roomRent:"5 - 15 lacs Single Pvt A/C Room,25 lacs - 50 lacs- Dexule A/C room Rider is available for upgradation from 5lacs to 20lacs", copay:"No co-pay for Zone 1, if Zone 2 client take treatment from Zone 1 then 10% will apply",  prePost:"60 days - 90 days ", Consumables:"Once in a year for unrelated illness", power:"10% every year, Max 30% ", restoration:"No co-pay for Zone 1, if Zone 2 client take treatment from Zone 1 then 10% will apply", Day:"NO", Sublimits:"Table as per mentioned in the Policy wording ", Life:"Yes", Hospital:"2055", Extra:"", diseases:"2 years", Deductible:"NA", Maternity:"NA", Road:"5 to 15 lacs - 5000, 25 lacs - 7500, 50 lacs - 10000", OPD:"", wait:"", Preventive:"Yes after 2 claim free year"},
+                    "Yuva Bharat Health - Gold Plan": { roomRent:"Single Pvt A/C Room, Rider is available for upgradation from 5lacs to 20lacs", copay:"No co-pay for Zone 1, if Zone 2 client take treatment from Zone 1 then 10% will apply",  prePost:"60 days - 90 days ", Consumables:"Once in a year for unrelated illness", power:"10% every year, Max 30% ", restoration:"NO", Day:"NO", Sublimits:"Table as per mentioned in the Policy wording ", Life:"Yes", Hospital:"2055", Extra:"", diseases:"2 years", Deductible:"NA", Maternity:"NA", Road:"5 to 15 lacs - 5000, 25 lacs - 7500, 50 lacs - 10000", OPD:"NO", wait:"", Preventive:"Yes after 2 claim free year"},
+                    "Yuva Bharat Health - Platinum Plan": { roomRent:"Single Pvt A/C Room, Rider is available for upgradation from 5lacs to 20lacs", copay:"No co-pay for Zone 1, if Zone 2 client take treatment from Zone 1 then 10% will apply",  prePost:"60 days - 90 days ", Consumables:"Once in a year for unrelated illness", power:"10% every year, Max 30% ", restoration:"NO", Day:"NO", Sublimits:"Table as per mentioned in the Policy wording ", Life:"Yes", Hospital:"2055", Extra:"", diseases:"2 years", Deductible:"NA", Maternity:"24 months waiting, 25k for Single and 37500 for Twin, however additional cover can avail for more coverage", Road:"5 to 15 lacs - 5000, 25 lacs - 7500, 50 lacs - 10000", OPD:"NO", wait:"", Preventive:"Yes after 2 claim free year"},
+                    
                 }
 
                 
@@ -667,6 +675,7 @@ th select option {
                 let MaternityCell = document.getElementById(`Maternity${index}`);
                 let RoadCell = document.getElementById(`Road${index}`);
                 let OPDCell = document.getElementById(`OPD${index}`);
+                let waitCell = document.getElementById(`wait${index}`);
                 let PreventiveCell = document.getElementById(`Preventive${index}`);
                 
                 if (selectedCompany && selectedProduct && insuranceData[selectedCompany][selectedProduct]) {
@@ -687,6 +696,7 @@ th select option {
                     MaternityCell.textContent = productDetails.Maternity;
                     RoadCell.textContent = productDetails.Road;
                     OPDCell.textContent = productDetails.OPD;
+                    waitCell.textContent = productDetails.wait;
                     PreventiveCell.textContent = productDetails.Preventive;
                 } else {
                     roomRentCell.textContent = "N/A";
@@ -705,6 +715,7 @@ th select option {
                     MaternityCell.textContent = "N/A";
                     RoadCell.textContent = "N/A";
                     OPDCell.textContent = "N/A";
+                    waitCell.textContent = "N/A";
                     PreventiveCell.textContent = "N/A";
                 }
 
@@ -728,7 +739,20 @@ th select option {
             // Initialize dropdowns on page load
             populateCompanies();
         </script>
-    
+</div>
+
+<!--<div class="data1">
+    <h2>Product Benefits:</h2>
+    <h2>SBI Arogya Supreme Pro </h2>
+    <p>The SBI Arogya Supreme Pro Secure Plan offers comprehensive coverage that includes hospitalisation, pre-hospitalisation, and post-hospitalisation expenses. However, that the pre-hospitalisation expenses are covered for up to 60 days before hospital admission and post-hospitalisation expenses up to 180 days after discharge, all up to the sum insured. In addition, the policy pays up to the sum insured amount for all day care services, domiciliary treatments, expenses of donors for organ donation procedures, modern treatments, and non-medical expenses. Moreover, with no restrictions on room rent, the SBI Arogya Supreme Pro Plan gives you the freedom to select any room. There is no limit on ICU rent and no provision for copayments either. However, an optional deductible is applicable under the policy, and you have the flexibility to choose from the following options: 25K/50K/100K/200K/300K as an option. Common medical procedures and treatments, such as joint replacement surgery and cataract treatments, are not restricted under this plan and are therefore covered up to the sum insured. Notably, under this plan, specific treatments have a 24-month waiting time, whereas pre-existing conditions have a 36-month waiting period.</p>
+
+    <h2>Royal Sundaram Next Gen</h2>
+    <p>The Royal Sundaram Next Gen Plan provides comprehensive coverage that encompasses hospitalisation costs, as well as pre and post-hospitalization expenses. Pre-hosp expenses are covered for up to 90 days before admission, while post-hospitalization expenses are covered for up to 180 days after discharge, both within the sum insured. Additionally, the policy covers all daycare treatments, domiciliary treatments (except for 15 illnesses), expenses of donors for organ donation procedures, and modern treatments all up to the sum insured. Please note that non-medical expenses are covered up to the sum assured as an add-on. Moreover, the plan offers the flexibility to choose any room without imposing room rent limits, though it is available as an add-on. There are no limits on ICU rent or deductibles. Also, this plan offers an optional co-payment of 10% to 50%. The policy covers common medical treatments and surgeries, such as cataract and joint replacement surgeries, up to the sum insured. However, it's important to note that pre-existing conditions and specific conditions have a 12-month waiting period (as an add-on). As an add-on, this plan allows a 90-day waiting period for conditions like BP, Diabetes, and Heart Disease (unless these diseases are classified as pre-existing conditions).</p>
+
+    <h2>NIA - Yuva Bharat Health - Base Plan</h2>
+    <p>The NIA - Yuva Bharat Health - Base Plan Plan provides comprehensive coverage for hospitalisation, pre-hospitalisation, and post-hospitalisation expenses. It covers pre- costs for up to 60 days before you're admitted and post-hospitalisation expenses for up to 90 days after discharge, all within the sum insured. Plus, it includes everything from day care procedures and domiciliary treatments to expenses for organ donation, modern treatments, and non-medical expenses, all up to sum assured. The Tata AIG MediCare Premier Plan gives you the freedom to choose any hospital room without room rent limits. Furthermore, there is no ICU rent limit, copayments, or deductibles under the plan. The policy places no restrictions on common medical treatments or surgeries, like cataracts, joint replacement surgeries, etc. However, it's important to know that pre-existing conditions come with a 24-month waiting period, and certain specific diseases also carry a 24-month waiting period.</p>
+</div>-->
+
 </body>
 
 </html>
